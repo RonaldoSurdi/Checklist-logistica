@@ -1,0 +1,60 @@
+﻿	<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+		<PropertyGroup>
+			<ProjectGuid>{CC5BEE0A-EBE7-4480-B7CB-9CE1271377E2}</ProjectGuid>
+		</PropertyGroup>
+		<ItemGroup>
+			<Projects Include="Server\HWSChecklistServer.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="Client\HWSChecklistClient.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="Service\HWSCheckListService.dproj">
+				<Dependencies/>
+			</Projects>
+		</ItemGroup>
+		<ProjectExtensions>
+			<Borland.Personality>Default.Personality.12</Borland.Personality>
+			<Borland.ProjectType/>
+			<BorlandProject>
+				<Default.Personality/>
+			</BorlandProject>
+		</ProjectExtensions>
+		<Target Name="HWSChecklistServer">
+			<MSBuild Projects="Server\HWSChecklistServer.dproj"/>
+		</Target>
+		<Target Name="HWSChecklistServer:Clean">
+			<MSBuild Projects="Server\HWSChecklistServer.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="HWSChecklistServer:Make">
+			<MSBuild Projects="Server\HWSChecklistServer.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="HWSChecklistClient">
+			<MSBuild Projects="Client\HWSChecklistClient.dproj"/>
+		</Target>
+		<Target Name="HWSChecklistClient:Clean">
+			<MSBuild Projects="Client\HWSChecklistClient.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="HWSChecklistClient:Make">
+			<MSBuild Projects="Client\HWSChecklistClient.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="HWSCheckListService">
+			<MSBuild Projects="Service\HWSCheckListService.dproj"/>
+		</Target>
+		<Target Name="HWSCheckListService:Clean">
+			<MSBuild Projects="Service\HWSCheckListService.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="HWSCheckListService:Make">
+			<MSBuild Projects="Service\HWSCheckListService.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="Build">
+			<CallTarget Targets="HWSChecklistServer;HWSChecklistClient;HWSCheckListService"/>
+		</Target>
+		<Target Name="Clean">
+			<CallTarget Targets="HWSChecklistServer:Clean;HWSChecklistClient:Clean;HWSCheckListService:Clean"/>
+		</Target>
+		<Target Name="Make">
+			<CallTarget Targets="HWSChecklistServer:Make;HWSChecklistClient:Make;HWSCheckListService:Make"/>
+		</Target>
+		<Import Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')" Project="$(BDS)\Bin\CodeGear.Group.Targets"/>
+	</Project>
